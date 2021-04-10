@@ -16,13 +16,23 @@ namespace L1.WcfServiceLibrary.Manager
     private const string RootFilename = "info.json";
     public EncyclopediaType Load(string sDirectory)
     {
-      //EncyclopediaType pEncyclopedia =
-      //  new EncyclopediaType();
-      //pEncyclopedia.Title = "Пословицы и поговорки";
-      //EncyclopediaPartType pPart1 =
-      //  new EncyclopediaPartType();
-      //pPart1.ArticleInfoList = new EncyclopediaArticleInfoType[] { };
-      //pEncyclopedia.PartList = new[] { pPart1 };
+      if (sDirectory == String.Empty)
+      {
+        EncyclopediaType pEncyclopedia =
+          new EncyclopediaType();
+        pEncyclopedia.Title = "Пословицы и поговорки";
+        EncyclopediaPartType pPart1 =
+          new EncyclopediaPartType();
+        pPart1.Title = "О земле";
+        pPart1.ArticleInfoList = new EncyclopediaArticleInfoType[] { };
+        EncyclopediaPartType pPart2 =
+          new EncyclopediaPartType();
+        pPart2.Title = "О воде";
+        pPart2.ArticleInfoList = new EncyclopediaArticleInfoType[] { };
+        pEncyclopedia.PartList = new[] { pPart1, pPart2 };
+        return pEncyclopedia;
+      }
+
       JsonSerializer pSerializer = JsonSerializer.Create(new JsonSerializerSettings() {
         Formatting = Formatting.Indented
       });

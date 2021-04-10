@@ -76,6 +76,11 @@ namespace L1.WcfServiceLibrary
     /// </summary>
     [DataMember]
     public string Folder { get; set; }
+    /// <summary>
+    /// Имя раздела
+    /// </summary>
+    [DataMember]
+    public string Title { get; set; }
     // TODO
   }
 
