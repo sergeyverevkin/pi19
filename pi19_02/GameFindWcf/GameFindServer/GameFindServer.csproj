@@ -55,6 +55,10 @@
       <Project>{17be7cd2-753a-40bf-8312-df6084f4a6f9}</Project>
       <Name>Game.Find.Server</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Game.Find\Game.Find.csproj">
+      <Project>{087D4788-73EE-4E84-AF27-2C3D7E666514}</Project>
+      <Name>Game.Find</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

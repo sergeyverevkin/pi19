@@ -21,6 +21,7 @@ namespace Game.Find.Server.Model
       if (PlayerGames.ContainsKey(sPlayer)) {
         return false;
       }
+      // TODO: join game
 
       CGame pGame = new CGame();
       Games.Add(pGame);

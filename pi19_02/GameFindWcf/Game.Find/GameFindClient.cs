@@ -29,5 +29,10 @@ namespace Game.Find
     {
       return base.Channel.GetState(sPlayer);
     }
+
+    public string GetVersion()
+    {
+      return base.Channel.GetVersion();
+    }
   }
 }

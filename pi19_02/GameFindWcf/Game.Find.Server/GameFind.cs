@@ -1,6 +1,5 @@
-﻿using System;
+﻿using Game.Find.Server.Model;
 using System.ServiceModel;
-using Game.Find.Server.Model;
 
 namespace Game.Find.Server
 {
@@ -28,13 +27,17 @@ namespace Game.Find.Server
     public GameState GetState(string sPlayer)
     {
       CGame pGame = m_pGame.GetGame(sPlayer);
-      GameState pGameState = new GameState()
-      {
+      GameState pGameState = new GameState() {
         CurrentPlayer = pGame.CurrentPlayer,
         Distance = pGame.GetDistance(sPlayer),
         State = pGame.State
       };
       return pGameState;
+    }
+
+    public string GetVersion()
+    {
+      return "1.0";
     }
   }
 }

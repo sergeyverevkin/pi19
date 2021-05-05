@@ -46,6 +46,7 @@ namespace GameFindClient
     {
       m_sPlayerGuid = new Guid().ToString("N");
       Game.Find.GameFindClient pClient = new Game.Find.GameFindClient(txtUrl.Text);
+      Text = pClient.GetVersion();
       pClient.StartGame(m_sPlayerGuid);
     }
 

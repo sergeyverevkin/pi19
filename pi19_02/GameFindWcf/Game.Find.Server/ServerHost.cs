@@ -4,7 +4,7 @@ using System.ServiceModel.Description;
 
 namespace Game.Find.Server
 {
-  public class ServerHost
+  public class ServerHost<TClass, TContract>
   {
     private ServiceHost m_pHost;
 
@@ -22,10 +22,10 @@ namespace Game.Find.Server
       smb.MetadataExporter.PolicyVersion = PolicyVersion.Policy15;
 
       // Создаем хост
-      m_pHost = new ServiceHost(typeof(CGameFind));
+      m_pHost = new ServiceHost(typeof(TClass));
       m_pHost.Description.Behaviors.Add(smb);
       // Добавляем обслуживание основного функционала
-      m_pHost.AddServiceEndpoint(typeof(IGameFind), pBinding, sUrlService);
+      m_pHost.AddServiceEndpoint(typeof(TContract), pBinding, sUrlService);
       // Добавляем обслуживание публикации информации о сервисе
       m_pHost.AddServiceEndpoint(typeof(IMetadataExchange), MetadataExchangeBindings.CreateMexHttpBinding(), sUrlServiceMeta);
 

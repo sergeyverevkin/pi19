@@ -32,6 +32,9 @@ namespace Game.Find
 
     [OperationContract]
     GameState GetState(string sPlayer);
+
+    [OperationContract]
+    string GetVersion();
   }
 
   [DataContract]
