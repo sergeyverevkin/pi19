@@ -56,6 +56,17 @@ namespace Game.Find
     [DataMember]
     public EGameState State { get; set; }
 
+    /// <summary>
+    /// Идентификатор игры
+    /// </summary>
+    [DataMember]
+    public string GameUid { get; set; }
+
+    /// <summary>
+    /// Расстояние соперника
+    /// </summary>
+    [DataMember]
+    public double OpponentDistance { get; set; }
   }
 
   [DataContract]

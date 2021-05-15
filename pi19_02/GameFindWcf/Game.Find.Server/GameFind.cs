@@ -1,5 +1,4 @@
 ﻿using Game.Find.Server.Model;
-using System.ServiceModel;
 
 namespace Game.Find.Server
 {
@@ -29,10 +28,15 @@ namespace Game.Find.Server
     public GameState GetState(string sPlayer)
     {
       CGame pGame = m_pGame.GetGame(sPlayer);
+      if (pGame == null) {
+        return new GameState();
+      }
       GameState pGameState = new GameState() {
         CurrentPlayer = pGame.CurrentPlayer,
         Distance = pGame.GetDistance(sPlayer),
-        State = pGame.State
+        State = pGame.State,
+        GameUid = pGame.Guid,
+        OpponentDistance = pGame.GetBestDistance()
       };
       return pGameState;
     }

@@ -54,6 +54,11 @@ namespace Game.Find.Server.Model
       if (pGame == null) {
         pGame = new CGame();
         Games.Add(pGame);
+        Write($"new game: {pGame.Guid} // player: {sPlayer}");
+      }
+      else
+      {
+        Write($"join game: {pGame.Guid} // player: {sPlayer}");
       }
 
       pGame.AddPlayer(sPlayer);
@@ -72,6 +77,7 @@ namespace Game.Find.Server.Model
         throw new Exception();
       }
       pG.LastDateTime = DateTime.Now;
+      Write($"end game: {pG.Guid} // player: {sPlayer}");
 
       pG.EndGame();
     }
@@ -91,7 +97,14 @@ namespace Game.Find.Server.Model
       m_pLogger = pLogger;
     }
 
-    // TODO: LogMethod + logging
+    public void Write(string sText)
+    {
+      m_pLogger?.Write(sText);
+    }
+    public void WriteError(string sText)
+    {
+      m_pLogger?.WriteError(sText);
+    }
     #endregion
 
   }

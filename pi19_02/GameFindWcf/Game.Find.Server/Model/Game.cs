@@ -21,7 +21,7 @@ namespace Game.Find.Server.Model
     public CGame()
     {
       PlayerList = new List<CPlayer>();
-      Guid = new Guid().ToString("N");
+      Guid = System.Guid.NewGuid().ToString("N");
       State = EGameState.GameWait;
       LastDateTime = DateTime.Now;
       Width = 100;
@@ -127,6 +127,21 @@ namespace Game.Find.Server.Model
       State = EGameState.GameOver;
     }
 
+    public double GetBestDistance()
+    {
+      double ddMin = -1;
+      foreach (CPlayer pP in PlayerList)
+      {
+        double dd = GetDistance(pP.Guid);
+        if (ddMin < 0 || dd < ddMin)
+        {
+          ddMin = dd;
+        }
+      }
+
+      return ddMin;
+    }
     #endregion
+
   }
 }
