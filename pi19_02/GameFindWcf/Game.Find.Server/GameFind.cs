@@ -4,10 +4,12 @@ using System.ServiceModel;
 namespace Game.Find.Server
 {
 
-  [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)]
+  // [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)]
   public class CGameFind : IGameFind
   {
-    private CGameEngine m_pGame = new CGameEngine();
+    private static CGameEngine m_pGame = new CGameEngine();
+
+    #region public methods
 
     public bool StartGame(string sPlayer)
     {
@@ -39,5 +41,14 @@ namespace Game.Find.Server
     {
       return "1.0";
     }
+
+    #endregion
+
+    #region static methods
+    public static void SetLogger(ILogger pLogger)
+    {
+      m_pGame.SetLogger(pLogger);
+    }
+    #endregion
   }
 }

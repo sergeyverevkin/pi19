@@ -29,9 +29,9 @@
     {
       this.panel1 = new System.Windows.Forms.Panel();
       this.panTop = new System.Windows.Forms.Panel();
-      this.txtUrl = new System.Windows.Forms.TextBox();
-      this.btnStart = new System.Windows.Forms.Button();
       this.btnFinish = new System.Windows.Forms.Button();
+      this.btnStart = new System.Windows.Forms.Button();
+      this.txtUrl = new System.Windows.Forms.TextBox();
       this.panTop.SuspendLayout();
       this.SuspendLayout();
       // 
@@ -54,12 +54,15 @@
       this.panTop.Size = new System.Drawing.Size(800, 48);
       this.panTop.TabIndex = 2;
       // 
-      // txtUrl
+      // btnFinish
       // 
-      this.txtUrl.Location = new System.Drawing.Point(74, 12);
-      this.txtUrl.Name = "txtUrl";
-      this.txtUrl.Size = new System.Drawing.Size(172, 20);
-      this.txtUrl.TabIndex = 1;
+      this.btnFinish.Location = new System.Drawing.Point(358, 9);
+      this.btnFinish.Name = "btnFinish";
+      this.btnFinish.Size = new System.Drawing.Size(75, 23);
+      this.btnFinish.TabIndex = 3;
+      this.btnFinish.Text = "Финиш";
+      this.btnFinish.UseVisualStyleBackColor = true;
+      this.btnFinish.Click += new System.EventHandler(this.btnFinish_Click);
       // 
       // btnStart
       // 
@@ -71,15 +74,12 @@
       this.btnStart.UseVisualStyleBackColor = true;
       this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
       // 
-      // btnFinish
+      // txtUrl
       // 
-      this.btnFinish.Location = new System.Drawing.Point(358, 9);
-      this.btnFinish.Name = "btnFinish";
-      this.btnFinish.Size = new System.Drawing.Size(75, 23);
-      this.btnFinish.TabIndex = 3;
-      this.btnFinish.Text = "Финиш";
-      this.btnFinish.UseVisualStyleBackColor = true;
-      this.btnFinish.Click += new System.EventHandler(this.btnFinish_Click);
+      this.txtUrl.Location = new System.Drawing.Point(74, 12);
+      this.txtUrl.Name = "txtUrl";
+      this.txtUrl.Size = new System.Drawing.Size(172, 20);
+      this.txtUrl.TabIndex = 1;
       // 
       // Form1
       // 
@@ -90,6 +90,7 @@
       this.Controls.Add(this.panTop);
       this.Name = "Form1";
       this.Text = "Form1";
+      this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
       this.panTop.ResumeLayout(false);
       this.panTop.PerformLayout();
       this.ResumeLayout(false);

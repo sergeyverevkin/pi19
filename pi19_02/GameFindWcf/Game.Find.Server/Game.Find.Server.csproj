@@ -43,8 +43,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GameFind.cs" />
+    <Compile Include="ILogger.cs" />
     <Compile Include="Model\Game.cs" />
     <Compile Include="Model\GameEngine.cs" />
+    <Compile Include="Model\GamesPool.cs" />
     <Compile Include="Model\Player.cs" />
     <Compile Include="ServerHost.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

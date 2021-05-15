@@ -14,6 +14,7 @@ namespace GameFindClient
   public partial class Form1 : Form
   {
     private string m_sPlayerGuid;
+    private Game.Find.GameFindClient m_pClient;
 
 
     public Form1()
@@ -25,8 +26,7 @@ namespace GameFindClient
 
     private void h_Refresh()
     {
-      Game.Find.GameFindClient pClient = new Game.Find.GameFindClient(txtUrl.Text);
-      GameState pState = pClient.GetState(m_sPlayerGuid);
+      GameState pState = m_pClient.GetState(m_sPlayerGuid);
       switch (pState.State)
       {
         case EGameState.GameWait:
@@ -39,22 +39,46 @@ namespace GameFindClient
           panTop.BackColor = Color.Bisque;
           break;
       }
-
     }
 
     private void btnStart_Click(object sender, EventArgs e)
     {
+      m_pClient = h_CreateClient();
       m_sPlayerGuid = new Guid().ToString("N");
-      Game.Find.GameFindClient pClient = new Game.Find.GameFindClient(txtUrl.Text);
-      Text = pClient.GetVersion();
-      pClient.StartGame(m_sPlayerGuid);
+      Text = m_pClient.GetVersion();
+      m_pClient.StartGame(m_sPlayerGuid);
+    }
+
+    private Game.Find.GameFindClient h_CreateClient()
+    {
+      return new Game.Find.GameFindClient(txtUrl.Text);
     }
 
     private void btnFinish_Click(object sender, EventArgs e)
     {
-      Game.Find.GameFindClient pClient = new Game.Find.GameFindClient(txtUrl.Text);
-      pClient.EndGame(m_sPlayerGuid);
+      m_pClient.EndGame(m_sPlayerGuid);
 
+    }
+
+    private void Form1_KeyDown(object sender, KeyEventArgs e)
+    {
+      switch (e.KeyCode)
+      {
+        case Keys.Left:
+          m_pClient.Turn(m_sPlayerGuid, ETurn.Left);
+          break;
+        case Keys.Right:
+          m_pClient.Turn(m_sPlayerGuid, ETurn.Right);
+          break;
+        case Keys.Up:
+          m_pClient.Turn(m_sPlayerGuid, ETurn.Top);
+          break;
+        case Keys.Down:
+          m_pClient.Turn(m_sPlayerGuid, ETurn.Bottom);
+          break;
+      }
+      // TODO: get extended game state
+      h_Refresh();
     }
   }
 }

@@ -4,9 +4,20 @@ using System.Linq;
 
 namespace Game.Find.Server.Model
 {
+  /// <summary>
+  /// Класс игры
+  /// </summary>
   public class CGame
   {
+    #region private variables
+
+    private const int MaxPlayerCount = 2;
     private Random m_pRand = new Random();
+
+    #endregion
+
+    #region constructors
+
     public CGame()
     {
       PlayerList = new List<CPlayer>();
@@ -20,17 +31,52 @@ namespace Game.Find.Server.Model
       ExitY = m_pRand.Next(0, Height);
     }
 
+    #endregion
+
+    #region public properties
+    /// <summary>
+    /// Ширина игрового поля
+    /// </summary>
     public int Width { get; set; }
+    /// <summary>
+    /// Высота игрового поля
+    /// </summary>
     public int Height { get; set; }
-
+    /// <summary>
+    /// Дата активности игры: если ее бросили, то она насильно завершается (очистка)
+    /// </summary>
     public DateTime LastDateTime { get; set; }
-
+    /// <summary>
+    /// Список участников игры
+    /// </summary>
     public List<CPlayer> PlayerList { get; private set; }
+    /// <summary>
+    /// Текущий игрок: заполняется для победителя при состоянии игры "окончена"
+    /// </summary>
     public string CurrentPlayer { get; set; }
+    /// <summary>
+    /// Состояние игры
+    /// </summary>
     public EGameState State { get; set; }
+    /// <summary>
+    /// Идентификатор игры
+    /// </summary>
     public string Guid { get; set; }
+    /// <summary>
+    /// Координаты выхода
+    /// </summary>
     public int ExitX { get; set; }
+    /// <summary>
+    /// Координаты выхода
+    /// </summary>
     public int ExitY { get; set; }
+    /// <summary>
+    /// Можно ли присоединиться к игре
+    /// </summary>
+    public bool IsJoinable => PlayerList.Count < MaxPlayerCount;
+    #endregion
+
+    #region public methods
 
     public double GetDistance(string sPlayer)
     {
@@ -80,5 +126,7 @@ namespace Game.Find.Server.Model
     {
       State = EGameState.GameOver;
     }
+
+    #endregion
   }
 }
